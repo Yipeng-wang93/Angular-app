@@ -1,59 +1,97 @@
-# YipengAssignmentApp
+# YipengAssignmentApp - Angular 20 Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+## Description
+This app is a comprehensive web application built with Angular 20 that demonstrates modern web development practices including client-side routing, RESTful API consumption, and reactive form handling.
 
-## Development server
+## Features
+- **Client-Side Navigation**: Seamless navigation between pages using Angular Router
+- **API Integration**: Fetches and displays data from JSONPlaceholder API
+- **Reactive Forms**: Advanced form handling with validation
+- **Responsive Design**: Mobile-friendly interface using Bootstrap 5
+- **Modern Angular**: Built with Angular 20 standalone components
 
-To start a local development server, run:
+## Technologies Used
+- Angular 20
+- TypeScript
+- Bootstrap 5
+- RxJS
+- HttpClient for API calls
+- Reactive Forms
 
+## Installation
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm (comes with Node.js)
+- Angular CLI 20
+
+### Steps
+1. Clone the repository:
+```bash
+git clone https://github.com/2025-Fall-ITE-5425-0TA/angular-assignment-Yipeng-wang93.git
+cd yipeng-assignment-app
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Navigate to `http://localhost:4200`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+## Project Structure
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── navigation/       # Navigation bar component
+│   │   ├── home/            # Landing page
+│   │   ├── posts/           # API data display
+│   │   ├── feedback-form/   # Reactive form
+│   │   ├── footer/          # Footer component
+│   │   └── page-not-found/  # 404 page
+│   ├── services/
+│   │   └── post.ts          # API service
+│   ├── app.config.ts        # Application configuration
+│   ├── app.routes.ts        # Routing configuration
+│   └── app.ts               # Root component
+└── styles.css               # Global styles
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## API Usage
+This application consumes the JSONPlaceholder API:
+- **Endpoint**: https://jsonplaceholder.typicode.com/posts
+- **Method**: GET
+- **Purpose**: Demonstrates HTTP client usage and API integration
 
-```bash
-ng generate --help
-```
+## Form Validation
+The feedback form includes the following validations:
+- **Student Name**: Required, minimum 3 characters
+- **Email**: Required, must be valid email format
+- **Course**: Required selection
+- **Rating**: Required, must be between 1-5
+- **Comments**: Required, minimum 10 characters
 
-## Building
+## Deployment
+Deployed on Vercel: [Your Vercel URL]
 
-To build the project run:
+## Author
+Yipeng Wang
+Humber College - IT Solutions Program
 
-```bash
-ng build
-```
+## Assignment Context
+This project was developed as part of the Web Programming Framework 2 course assignment, demonstrating proficiency in:
+- Angular application architecture
+- Component-based development
+- Service creation and dependency injection
+- HTTP client and API integration
+- Reactive forms with validation
+- Client-side routing
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## License
+This project is created for educational purposes.
