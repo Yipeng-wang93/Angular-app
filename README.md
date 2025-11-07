@@ -78,7 +78,7 @@ The feedback form includes the following validations:
 - **Comments**: Required, minimum 10 characters
 
 ## Deployment
-Deployed on Vercel: [Your Vercel URL]
+Deployed on Vercel: https://angular-app-eight-nu.vercel.app/
 
 ## Author
 Yipeng Wang
