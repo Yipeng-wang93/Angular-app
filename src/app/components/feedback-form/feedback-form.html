@@ -1,0 +1,178 @@
+<div class="container-main">
+  <div class="form-container">
+    <div class="form-header">
+      <h1>Student Feedback Form</h1>
+      <p class="lead">We value your feedback! Please share your thoughts and experiences.</p>
+    </div>
+
+    <!-- Success message - displayed after successful form submission -->
+    @if (showSuccessMessage) {
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading">Thank you for your feedback!</h4>
+        <p>Your response has been recorded successfully.</p>
+      </div>
+    }
+
+    <!-- Reactive form bound to feedbackForm FormGroup -->
+    <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" class="feedback-form">
+      
+      <!-- Student Name field -->
+      <div class="mb-3">
+        <label for="studentName" class="form-label">
+          Student Name <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="studentName"
+          formControlName="studentName"
+          placeholder="Enter your full name"
+          [class.is-invalid]="getControl('studentName')?.invalid && 
+                              (getControl('studentName')?.dirty || submitted)">
+        
+        <!-- Validation error messages -->
+        @if (getControl('studentName')?.invalid && 
+             (getControl('studentName')?.dirty || submitted)) {
+          <div class="invalid-feedback">
+            @if (getControl('studentName')?.errors?.['required']) {
+              <span>Student name is required.</span>
+            }
+            @if (getControl('studentName')?.errors?.['minlength']) {
+              <span>Name must be at least 3 characters long.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Email field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">
+          Email Address <span class="required">*</span>
+        </label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="email"
+          formControlName="email"
+          placeholder="your.email@example.com"
+          [class.is-invalid]="getControl('email')?.invalid && 
+                              (getControl('email')?.dirty || submitted)">
+        
+        @if (getControl('email')?.invalid && 
+             (getControl('email')?.dirty || submitted)) {
+          <div class="invalid-feedback">
+            @if (getControl('email')?.errors?.['required']) {
+              <span>Email address is required.</span>
+            }
+            @if (getControl('email')?.errors?.['email']) {
+              <span>Please enter a valid email address.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Course field -->
+      <div class="mb-3">
+        <label for="course" class="form-label">
+          Course <span class="required">*</span>
+        </label>
+        <select 
+          class="form-select" 
+          id="course"
+          formControlName="course"
+          [class.is-invalid]="getControl('course')?.invalid && 
+                              (getControl('course')?.dirty || submitted)">
+          <option value="">Select a course</option>
+          <option value="Web Programming Framework">Web Programming Framework</option>
+          <option value="Database Administration">Database Administration</option>
+          <option value="Deep Learning">Deep Learning</option>
+          <option value="Capstone Project">Capstone Project</option>
+          <option value="Other">Other</option>
+        </select>
+        
+        @if (getControl('course')?.invalid && 
+             (getControl('course')?.dirty || submitted)) {
+          <div class="invalid-feedback">
+            Please select a course.
+          </div>
+        }
+      </div>
+
+      <!-- Rating field -->
+      <div class="mb-3">
+        <label for="rating" class="form-label">
+          Overall Rating (1-5) <span class="required">*</span>
+        </label>
+        <input 
+          type="number" 
+          class="form-control" 
+          id="rating"
+          formControlName="rating"
+          min="1"
+          max="5"
+          placeholder="Rate from 1 to 5"
+          [class.is-invalid]="getControl('rating')?.invalid && 
+                              (getControl('rating')?.dirty || submitted)">
+        
+        @if (getControl('rating')?.invalid && 
+             (getControl('rating')?.dirty || submitted)) {
+          <div class="invalid-feedback">
+            @if (getControl('rating')?.errors?.['required']) {
+              <span>Rating is required.</span>
+            }
+            @if (getControl('rating')?.errors?.['min'] || 
+                 getControl('rating')?.errors?.['max']) {
+              <span>Rating must be between 1 and 5.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Comments field -->
+      <div class="mb-3">
+        <label for="comments" class="form-label">
+          Comments/Feedback <span class="required">*</span>
+        </label>
+        <textarea 
+          class="form-control" 
+          id="comments"
+          formControlName="comments"
+          rows="4"
+          placeholder="Please share your detailed feedback (minimum 10 characters)"
+          [class.is-invalid]="getControl('comments')?.invalid && 
+                              (getControl('comments')?.dirty || submitted)"></textarea>
+        
+        @if (getControl('comments')?.invalid && 
+             (getControl('comments')?.dirty || submitted)) {
+          <div class="invalid-feedback">
+            @if (getControl('comments')?.errors?.['required']) {
+              <span>Comments are required.</span>
+            }
+            @if (getControl('comments')?.errors?.['minlength']) {
+              <span>Comments must be at least 10 characters long.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Submit button - disabled when form is invalid -->
+      <div class="d-grid gap-2">
+        <button 
+          type="submit" 
+          class="btn btn-primary btn-lg"
+          [disabled]="(submitted && feedbackForm.invalid) || isSubmitting">
+          {{ isSubmitting ? 'Submitting...' : 'Submit Feedback' }}
+        </button>
+      </div>
+
+      <!-- Form status indicator -->
+      <div class="mt-3 text-center">
+        @if (feedbackForm.invalid && submitted) {
+          <small class="text-danger">
+            Please fix the errors above before submitting.
+          </small>
+        }
+      </div>
+    </form>
+  </div>
+</div>
